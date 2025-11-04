@@ -1,0 +1,19 @@
+dCalendario = 
+var _DataMin= DATE(YEAR(MIN(fVendas[Data da Venda])),01,01)
+var _DataMax = DATE(YEAR(MAX(fVendas[Data da Venda])),12,31)
+RETURN
+
+ADDCOLUMNS (
+    SELECTCOLUMNS (
+        CALENDAR (_DataMin, _DataMax),
+        "Datas", [Date]
+    ),
+    "Ano", YEAR([Datas]),
+    "Mes", MONTH([Datas]),
+    "Dia", DAY([Datas]),
+    "NomeMes", FORMAT([Datas], "MMMM"),
+    "Semana", FORMAT([Datas], "dddd"),
+    "NomeAno/Mes",FORMAT([Datas],"yyyy-MMMM"),
+    "Ano/Mes", FORMAT([Datas], "YYYY-MM")
+)
+
